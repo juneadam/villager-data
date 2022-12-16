@@ -102,7 +102,7 @@ def all_names_by_hobby(filename):
 
     return villagers_sorted_by_hobby
 
-print(all_names_by_hobby('villagers.csv'))
+#print(all_names_by_hobby('villagers.csv'))
 
 def all_data(filename):
     """Return all the data in a file.
@@ -117,12 +117,21 @@ def all_data(filename):
         - list[tuple[str]]: a list of tuples containing strings
     """
 
+    vill_list = []
+    temp_tuple = ()
     all_data = []
-
-    # TODO: replace this with your code
+    
+    for villager in open(filename):
+        villager = villager.rstrip()
+        vill_list.append(villager.split('|'))
+    
+    for i,ind in enumerate(vill_list):
+        temp_tuple = tuple(vill_list[i])
+        all_data.append(temp_tuple)
 
     return all_data
 
+print(all_data('villagers.csv'))
 
 def find_motto(filename, villager_name):
     """Return the villager's motto.
