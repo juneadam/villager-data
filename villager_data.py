@@ -24,7 +24,7 @@ def all_species(filename):
     species = set(animal)
     return species
 
-all_species('villagers.csv')
+#all_species('villagers.csv')
 
 
 def get_villagers_by_species(filename, search_string="All"):
@@ -39,7 +39,6 @@ def get_villagers_by_species(filename, search_string="All"):
     """
 
     villagers = []
-    animals = []
     vill_list = []
     
     for villager in open(filename):
@@ -49,17 +48,14 @@ def get_villagers_by_species(filename, search_string="All"):
     for i,ind in enumerate(vill_list):
         if search_string == "All":
             villagers.append(vill_list[i][0])
-        else:
-            if vill_list[i][1] == search_string:
-                villagers.append(vill_list[i][0])
-            
-
+        elif vill_list[i][1] == search_string:
+            villagers.append(vill_list[i][0])
 
     print(sorted(villagers))
     
     return sorted(villagers)
 
-get_villagers_by_species('villagers.csv', "Rabbit")
+#get_villagers_by_species('villagers.csv')
 
 def all_names_by_hobby(filename):
     """Return a list of lists containing villagers' names, grouped by hobby.
@@ -70,11 +66,43 @@ def all_names_by_hobby(filename):
     Return:
         - list[list[str]]: a list of lists containing names
     """
+    vill_list = []
+    fitness = []
+    nature = []
+    education = []
+    music = []
+    fashion = []
+    play = []
+    villagers_sorted_by_hobby = []
+    
+    for villager in open(filename):
+        villager = villager.rstrip()
+        vill_list.append(villager.split('|'))
 
-    # TODO: replace this with your code
+    for i,ind in enumerate(vill_list):
+        if vill_list[i][3] == "Fitness":
+            fitness.append(vill_list[i][0])
+        if vill_list[i][3] == "Nature":
+            nature.append(vill_list[i][0])
+        if vill_list[i][3] == "Education":
+            education.append(vill_list[i][0])
+        if vill_list[i][3] == "Music":
+            music.append(vill_list[i][0])
+        if vill_list[i][3] == "Fashion":
+            fashion.append(vill_list[i][0])
+        if vill_list[i][3] == "Play":
+            play.append(vill_list[i][0])
+    
+    villagers_sorted_by_hobby.append(sorted(fitness))
+    villagers_sorted_by_hobby.append(sorted(nature))
+    villagers_sorted_by_hobby.append(sorted(education))
+    villagers_sorted_by_hobby.append(sorted(music))
+    villagers_sorted_by_hobby.append(sorted(fashion))
+    villagers_sorted_by_hobby.append(sorted(play))
 
-    return []
+    return villagers_sorted_by_hobby
 
+print(all_names_by_hobby('villagers.csv'))
 
 def all_data(filename):
     """Return all the data in a file.
