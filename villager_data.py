@@ -11,14 +11,23 @@ def all_species(filename):
         - set[str]: a set of strings
     """
 
-    species = set()
     
-    for villagers in open('villagers.csv'):
-        print(villagers)
+    vill_list = []
+    animal = []
+    
+    for villagers in open(filename):
+        villagers = villagers.rstrip()
+        vill_list.append(villagers.split('|'))
+
+    for i,line in enumerate(vill_list):
+        animal.append(vill_list[i][1])
 
 
         
+    print(animal)
 
+    species = set(animal)
+    print(species)
     return species
 
 all_species('villagers.csv')
