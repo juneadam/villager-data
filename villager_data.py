@@ -10,7 +10,6 @@ def all_species(filename):
     Return:
         - set[str]: a set of strings
     """
-
     
     vill_list = []
     animal = []
@@ -21,13 +20,8 @@ def all_species(filename):
 
     for i,line in enumerate(vill_list):
         animal.append(vill_list[i][1])
-
-
         
-    print(animal)
-
     species = set(animal)
-    print(species)
     return species
 
 all_species('villagers.csv')
@@ -45,11 +39,27 @@ def get_villagers_by_species(filename, search_string="All"):
     """
 
     villagers = []
+    animals = []
+    vill_list = []
+    
+    for villager in open(filename):
+        villager = villager.rstrip()
+        vill_list.append(villager.split('|'))
 
-    # TODO: replace this with your code
+    for i,ind in enumerate(vill_list):
+        if search_string == "All":
+            villagers.append(vill_list[i][0])
+        else:
+            if vill_list[i][1] == search_string:
+                villagers.append(vill_list[i][0])
+            
 
+
+    print(sorted(villagers))
+    
     return sorted(villagers)
 
+get_villagers_by_species('villagers.csv', "Rabbit")
 
 def all_names_by_hobby(filename):
     """Return a list of lists containing villagers' names, grouped by hobby.
